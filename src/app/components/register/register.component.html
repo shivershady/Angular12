@@ -1,1 +1,60 @@
-<p>register works!</p>
+<div class="container">
+  <section class="content">
+    <div class="header">
+      <h3>Đăng ký</h3>
+      <p>Nhanh chóng và dễ dàng.</p>
+    </div>
+
+    <div class="body">
+      <form [formGroup]="registerForm" (ngSubmit)="registerAccount()">
+        <div class="user_name">
+          <input name="fname" placeholder="Họ" type="text" formControlName="firstName">
+          <input name="lname" placeholder="Tên" type="text" formControlName="lastName">
+        </div>
+
+        <div class="email_password">
+          <input name="email"  placeholder="Email" type="text" formControlName="email">
+          <input name="password"  placeholder="Mật khẩu mới" type="password" formControlName="password">
+        </div>
+
+        <div class="birthday">
+          <label class="birthday__label">Sinh nhật</label>
+          <div class="birthday__groupSelect">
+            <select formControlName="dayOfBirth">
+              <option *ngFor="let day of dateOptions.day" [value]="day">{{day}}</option>
+            </select>
+            <select formControlName="monthOfBirth">
+              <option *ngFor="let month of dateOptions.month" [value]="month">{{month}}</option>
+            </select>
+            <select formControlName="yearOfBirth">
+              <option *ngFor="let year of dateOptions.year" [value]="year">{{year}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="gender">
+          <div class="gender__label">Giới tính</div>
+          <div class="gender__groupInput">
+            <label class="gender__groupInput__item" for="male">
+              <span>Nam</span>
+              <input id="male" name="gender" type="radio" value="male" formControlName="gender">
+            </label>
+            <label class="gender__groupInput__item" for="female">
+              <span>Nữ</span>
+              <input id="female" name="gender" type="radio" value="female" formControlName="gender">
+            </label>
+            <label class="gender__groupInput__item" for="other-gennders" formControlName="gender">
+              <span>Khác</span>
+              <input id="other-gennders" name="gender" type="radio" value="other-genders">
+            </label>
+          </div>
+        </div>
+
+        <p>Bằng cách nhấp vào Đăng ký, bạn đồng ý với Điều khoản, Chính sách dữ liệu và Chính sách cookie của chúng tôi.
+          Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.</p>
+
+        <button class="submit-button" type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </section>
+</div>
