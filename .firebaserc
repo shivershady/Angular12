@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular12-fb-clone": {
+      "hosting": {
+        "Angular12": [
+          "angular12-fb-clone"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular12-fb-clone"
+  }
+}

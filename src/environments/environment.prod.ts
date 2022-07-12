@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  firebaseConfig : {
+  firebase : {
     apiKey: "AIzaSyAXD7b9o3artypR4AmS4JrZ-tOfeewcj9E",
     authDomain: "angular12-fb-clone.firebaseapp.com",
     projectId: "angular12-fb-clone",

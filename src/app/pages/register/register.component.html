@@ -8,13 +8,33 @@
     <div class="body">
       <form [formGroup]="registerForm" (ngSubmit)="registerAccount()">
         <div class="user_name">
-          <input name="fname" placeholder="Họ" type="text" formControlName="firstName">
-          <input name="lname" placeholder="Tên" type="text" formControlName="lastName">
+          <div class="user_name__first">
+            <input name="fname" placeholder="Họ" type="text" formControlName="firstName">
+            <app-field-error-display
+              [displayError]="isFieldValid('firstName')"
+              errorMsg="Vui lòng nhập họ">
+            </app-field-error-display>
+          </div>
+          <div class="user_name__first">
+            <input name="lname" placeholder="Tên" type="text" formControlName="lastName">
+            <app-field-error-display
+              [displayError]="isFieldValid('lastName')"
+              errorMsg="Vui lòng nhập tên">
+            </app-field-error-display>
+          </div>
         </div>
 
         <div class="email_password">
           <input name="email"  placeholder="Email" type="text" formControlName="email">
+          <app-field-error-display
+            [displayError]="isFieldValid('email')"
+            errorMsg="Vui lòng nhập email và đúng định dạng">
+          </app-field-error-display>
           <input name="password"  placeholder="Mật khẩu mới" type="password" formControlName="password">
+          <app-field-error-display
+            [displayError]="isFieldValid('password')"
+            errorMsg="Vui lòng nhập password">
+          </app-field-error-display>
         </div>
 
         <div class="birthday">
@@ -48,12 +68,16 @@
               <input id="other-gennders" name="gender" type="radio" value="other-genders">
             </label>
           </div>
+          <app-field-error-display
+            [displayError]="isFieldValid('gender')"
+            errorMsg="Vui lòng chọn giới tính">
+          </app-field-error-display>
         </div>
 
         <p>Bằng cách nhấp vào Đăng ký, bạn đồng ý với Điều khoản, Chính sách dữ liệu và Chính sách cookie của chúng tôi.
           Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.</p>
 
-        <button class="submit-button" type="submit">Đăng ký</button>
+        <button class="submit-button" type="submit" >Đăng ký</button>
       </form>
     </div>
   </section>
