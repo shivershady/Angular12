@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./verify-email-address.component.scss']
 })
 export class VerifyEmailAddressComponent implements OnInit {
+  public email = '';
 
   constructor() { }
 

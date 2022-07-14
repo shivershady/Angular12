@@ -38,11 +38,19 @@ $Angular12-theme: mat.define-light-theme(
 
 /* BUTTONS */
 $primary-button-color: #1877f2;
+$secondary-button-color: #b2b4b7;
 $success-button-color: #42b72a;
 
 /* OTHER COLORS */
 $header-color: white;
 $body-color: #f0f2f5;
+$form-color: white;
+
+/* Information color */
+$error-color: #ff2825;
+$success-color: #42b72a;
+$warning-color: #ffa200;
+$info-color: #1877f2;
 
 * {
   margin: 0;
@@ -58,4 +66,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: $body-color;
+}
+.container {
+  width: 100%;
+  margin-left: 50px;
+  margin-right: 50px;
 }

@@ -7,6 +7,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import {Router} from '@angular/router';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -41,10 +42,10 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['']); // nếu đăng nhập thành công thì chuyển hướng đến trang home
         });
-        this.SetUserData(result);
+        this.SetUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error.message);
+        window.alert("Đăng nhập thất bại, vui lòng thử lại");
       });
   }
 
@@ -59,14 +60,16 @@ export class AuthService {
         this.SetUserData(result.user, payload);
       })
       .catch((error) => {
-        window.alert(error.message);
+        window.alert("Đăng ký thất bại, vui lòng thử lại");
       });
   }
 
   // Gửi email verfificaiton khi người dùng đăng ký
   SendVerificationMail() {
     return this.afAuth.currentUser
-      .then((u: any) => u.sendEmailVerification())
+      .then((u: any) => u.sendEmailVerification({
+        url: environment.local+'/login',
+      }))
       .then(() => {
         this.router.navigate(['verify-email-address']); // chuyển hướng đến trang xác nhận email
       });
@@ -80,7 +83,7 @@ export class AuthService {
         window.alert('Đã gửi email đặt lại mật khẩu, hãy kiểm tra hộp thư đến của bạn.');
       })
       .catch((error) => {
-        window.alert(error);
+        window.alert('Đã xảy ra lỗi, vui lòng thử lại.');
       });
   }
 
@@ -105,7 +108,7 @@ export class AuthService {
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         });
         this.SetUserData(result.user);
       })
@@ -124,18 +127,14 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
+      displayName: user.displayName ? user.displayName : payload.firstName + ' ' + payload.lastName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      dayOfBirth: payload ? payload.dayOfBirth : null,
+      monthOfBirth: payload ? payload.monthOfBirth : null,
+      yearOfBirth: payload ? payload.yearOfBirth : null,
     };
-    const payloadData = {
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      dayOfBirth: payload.dayOfBirth,
-      monthOfBirth: payload.monthOfBirth,
-      yearOfBirth: payload.yearOfBirth,
-    }
-
-    return userRef.set({...userData,...payloadData}, {
+    return userRef.set(userData, {
       merge: true,  // nếu đã có dữ liệu thì ghi đè
     });
   }

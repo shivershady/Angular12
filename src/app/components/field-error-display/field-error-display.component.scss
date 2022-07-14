@@ -1,5 +1,7 @@
+@import "/src/styles";
+
 .error-msg {
-  color: #ff2825;
+  color: $error-color;
   margin-top: 10px ;
   margin-left: 10px ;
 }

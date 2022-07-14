@@ -1,7 +1,7 @@
 <div class="login-container">
   <header class="login__header">
     <div class="login__header__left">
-      <img src="assets/FB-logo.svg" alt="logo" />
+      <img alt="logo" src="assets/FB-logo.svg"/>
       <h2>
         Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của
         bạn.
@@ -10,32 +10,52 @@
     <div class="login__header__right">
       <mat-card class="login__header__right__card">
         <mat-card-content class="login__header__right__card__content">
-          <form #form="ngForm" class="login__form" (ngSubmit)="login(form)">
+          <form [formGroup]="loginForm" (ngSubmit)="login()" class="login__form">
             <input
-              type="text"
               name="email"
               placeholder="Email hoặc số điện thoại"
-              ngModel
-              required
+              type="text"
+              formControlName="email"
             />
+            <app-field-error-display
+              [displayError]="isFieldValid('email')"
+              errorMsg="Vui lòng nhập email và đúng định dạng">
+            </app-field-error-display>
             <input
-              type="password"
               name="password"
               placeholder="Mật khẩu"
-              ngModel
-              required
+              type="password"
+              formControlName="password"
             />
+            <app-field-error-display
+              [displayError]="isFieldValid('password')"
+              errorMsg="Vui lòng nhập mật khẩu">
+            </app-field-error-display>
             <button
-              type="submit"
               class="login-button"
-              [disabled]="form.invalid || form.pending"
+              type="submit"
             >
               Đăng nhập
             </button>
           </form>
 
-          <a href="#">Quên mật khẩu?</a>
-          <button class="create-account" (click)="openRegister()">
+          <a [routerLink]="'/forgot-password'">Quên mật khẩu?</a>
+          <div class="line">
+            <div></div>
+            <div class="text-line">Hoặc</div>
+            <div></div>
+          </div>
+          <div class="other-login">
+            <button
+              (click)="loginGoogle()"
+              class="other-login__google">
+              <span class="icon-google">
+                <img src="assets/google-icon.png" alt="">
+              </span>
+              <span class="text-google">Google</span>
+            </button>
+          </div>
+          <button (click)="openRegister()" class="create-account">
             Tạo tài khoản mới
           </button>
         </mat-card-content>
@@ -49,6 +69,6 @@
   </header>
 
   <footer class="login__footer">
-    <img src="assets/FB-footer.png" alt="footer" />
+    <img alt="footer" src="assets/FB-footer.png"/>
   </footer>
 </div>

@@ -5,17 +5,28 @@ import { LoginComponent } from './pages/login/login.component';
 import { FacebookGuard } from './guards/facebook.guard';
 import {RegisterComponent} from "./pages/register/register.component";
 import {VerifyEmailAddressComponent} from "./pages/verify-email-address/verify-email-address.component";
+import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
+import {ViewComponent} from "./pages/view/view.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: ViewComponent,
     canActivate: [FacebookGuard],
+    children:[
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      { path: '',   redirectTo: 'home', pathMatch: 'prefix' },
+
+    ]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verify-email-address', component: VerifyEmailAddressComponent },
-  // { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  // { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

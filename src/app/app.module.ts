@@ -19,10 +19,15 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MaterialModule } from './shared/material/material.module';
 import { VerifyEmailAddressComponent } from './pages/verify-email-address/verify-email-address.component';
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ViewComponent } from './pages/view/view.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderViewComponent } from './components/header-view/header-view.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, VerifyEmailAddressComponent, FieldErrorDisplayComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, VerifyEmailAddressComponent, FieldErrorDisplayComponent, ForgotPasswordComponent, ViewComponent, HeaderComponent, FooterComponent, HeaderViewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
